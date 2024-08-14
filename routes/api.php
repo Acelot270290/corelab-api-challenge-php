@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('tasks')->group(function () {
+    Route::get('/search', [TaskController::class, 'search']);
     Route::get('/', [TaskController::class, 'index']);
     Route::post('/', [TaskController::class, 'store']);
     Route::get('/{id}', [TaskController::class, 'show']);
@@ -16,4 +17,5 @@ Route::prefix('tasks')->group(function () {
     Route::delete('/{id}', [TaskController::class, 'destroy']);
     Route::put('/{id}/favorite', [TaskController::class, 'toggleFavorite']);
     Route::put('/{id}/color', [TaskController::class, 'updateColor']);
+    
 });

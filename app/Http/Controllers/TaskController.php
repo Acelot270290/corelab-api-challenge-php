@@ -56,4 +56,10 @@ class TaskController extends Controller
         $task = $this->taskAction->updateTaskColor($id, $request->color);
         return response()->json($task);
     }
+
+    public function search(Request $request)
+    {
+        $tasks = $this->taskAction->searchTasks($request);
+        return response()->json($tasks);
+    }
 }

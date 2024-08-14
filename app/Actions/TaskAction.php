@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskAction
 {
@@ -59,4 +60,12 @@ class TaskAction
         $task->save();
         return $task;
     }
+
+    public function searchTasks(Request $request)
+    {
+        $search = $request->input('query');
+        Log::info('Search Query:', ['query' => $search]);
+        return Task::where('title', 'like', '%' . $search . '%')->get();
+    }
+
 }
